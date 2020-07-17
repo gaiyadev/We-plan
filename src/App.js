@@ -7,10 +7,14 @@ import ProjectSummary from './components/Project/ProjectDetails';
 import SIgnIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import CreateProject from './components/Project/CreateProject';
+import store from './redux/store/store';
+import { Provider } from 'react-redux';
+
 
 function App() {
   return (
     <BrowserRouter>
+      <Provider store={store}>
       <div className="App">
         <Navbar />
         <Switch>
@@ -20,7 +24,8 @@ function App() {
           <Route path='/signup' exact component={SignUp}></ Route>
           <Route path='/create' exact component={CreateProject}></ Route>
         </Switch>
-      </div>
+        </div>
+      </Provider>
     </BrowserRouter>
   );
 }
