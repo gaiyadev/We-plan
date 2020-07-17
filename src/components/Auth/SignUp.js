@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 class SignUp extends Component {
     constructor(props) {
@@ -24,35 +25,43 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div className="container">
-                <form onSubmit={this.onSubmitHandler}>
-                    <h5 className="grey-text text-darken-3"> Sign Up</h5>
-                    <div className="input-field">
-                        <label htmlFor="firstName">First Name </label>
-                        <input type="text" id="firstName" name="firstName" onChange={this.onChangeHandler} />
-                    </div>
+            <div>
+                <Helmet>
+                    <title>Create an Account</title>
+                </Helmet>
+                <div className="container">
+                    <form onSubmit={this.onSubmitHandler}>
+                        <h5 className="grey-text text-darken-3"> Sign Up</h5>
+                        <div className="input-field">
+                            <i className="material-icons prefix">account_circle</i>
+                            <label htmlFor="firstName">First Name </label>
+                            <input type="text" id="firstName" name="firstName" onChange={this.onChangeHandler} />
+                        </div>
 
-                    <div className="input-field">
-                        <label htmlFor="lasttName">Last Name </label>
-                        <input type="text" id="lasttName" name="lasttName" onChange={this.onChangeHandler} />
-                    </div>
+                        <div className="input-field">
+                            <i className="material-icons prefix">account_circle</i>
+                            <label htmlFor="lasttName">Last Name </label>
+                            <input type="text" id="lasttName" name="lasttName" onChange={this.onChangeHandler} />
+                        </div>
 
-                    <div className="input-field">
-                        <label htmlFor="email">Email </label>
-                        <input type="email" id="email" name="email" onChange={this.onChangeHandler} />
-                    </div>
+                        <div className="input-field">
+                            <i className="material-icons prefix">email</i>
+                            <label htmlFor="email">Email </label>
+                            <input type="email" id="email" name="email" onChange={this.onChangeHandler} />
+                        </div>
 
-                    <div className="input-field">
-                        <label htmlFor="password">Password </label>
-                        <input type="password" id="password" onChange={this.onChangeHandler} name="password" />
-                    </div>
+                        <div className="input-field">
+                            <i className="material-icons prefix">lock</i>
+                            <label htmlFor="password">Password </label>
+                            <input type="password" id="password" onChange={this.onChangeHandler} name="password" />
+                        </div>
 
-                    <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0" type="submit">Register</button>
-                    </div>
-                </form>
+                        <div className="input-field">
+                            <button className="btn pink lighten-1 z-depth-0" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
         );
     }
 }
