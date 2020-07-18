@@ -1,32 +1,29 @@
-import { ADD_PROJECT, ADD_PROJECT_ERROR, GET_PROJECT, GET_PROJECT_ERROR } from '../actions/types';
+import * as actionTypes from '../actions/types';
 
 const initialState = {
-    projects: [   ]
+    projects: [
+        { id: 1, title: 'web dev', content: 'this is wash' },
+        { id: 2, title: ' dev', content: 'this is wash' },
+        { id: 3, title: 'mobile', content: 'this is wash' },
+        { id: 4, title: 'web dev', content: 'this is wash' }
+    ]
 };
 
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ADD_PROJECT:
+        case actionTypes.ADD_PROJECT:
+            console.log('created project', action.project)
             return {
-                ...state,
-                projects: [action.payload, ...state.projects]
-
+                ...state
             };
-        case GET_PROJECT:
-            console.log(action.payload)
-            return {
-                ...state,
-                projects: [action.payload, ...state.projects]
-            };
-        case ADD_PROJECT_ERROR:
-            return console.log(action.err);
-        // case GET_PROJECT_ERROR:
-        //    return console.log(action.err);
+        case actionTypes.ADD_PROJECT_ERROR:
+            return console.log('Create projct error', action.err)
         default:
             return state;
-
     }
+
 }
+
 
 

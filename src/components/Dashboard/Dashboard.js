@@ -3,16 +3,10 @@ import Notification from './Notification';
 import ProjectList from '../Project/ProjectList';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import { getProjects } from '../../redux/actions/projectsAction';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-    componentDidMount() {
-        this.props.getProjects()
-    }
     render() {
         const { projects } = this.props;
         return (
@@ -35,8 +29,17 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    projects: state.project.projects
-});
 
-export default connect(mapStateToProps, { getProjects})(Dashboard);
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        projects: state.firestore.ordered.projects
+    };
+};
+
+export default compose(
+    connect(mapStateToProps, null),
+    firestoreConnect([
+        { collection: 'projects' }
+    ])
+)(Dashboard);

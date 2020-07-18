@@ -1,22 +1,50 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 const ProjectSummary = props => {
-    const { id } = props.match.params;
-    return (
-        <div className="container section project-details">
-            <div className="card z-depth-0">
-                <div className="card-content">
-                    <span className="card-title" >Project Summary</span>
-                    <p>
-                        lorem   btetenthtjh | lowerbb bbbbfbfbf {id}
-                    </p>
-                </div>
-                <div className="card-action grey lighten-4 grey-text">Posted bt obed
-                <div >@nd Setempber 33</div>
+    // const { id } = props.match.params;
+    console.log(props);
+    const { project } = props;
+    if (project) {
+        return (
+            <div className="container section project-details">
+                <div className="card z-depth-0">
+                    <div className="card-content">
+                        <span className="card-title" > {project.title} </span>
+                        <p>
+                            {project.content}
+                        </p>
+                    </div>
+                    <div className="card-action grey lighten-4 grey-text">{project.authorFirstName} {project.authorLasttName}
+                        <div >@nd Setempber 33</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        )
+    } else {
+        return (
+            <div className="container center">
+                <p>Loading project..</p>
+            </div>
+        )
+    }
+
 }
 
-export default ProjectSummary;
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.match.params.id;
+    const projects = state.firestore.data.projects;
+    const project = projects ? projects[id] : null;
+    return {
+        project: project
+    };
+};
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'projects' }
+    ])
+)(ProjectSummary);
