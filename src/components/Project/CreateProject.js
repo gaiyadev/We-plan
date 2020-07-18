@@ -28,7 +28,7 @@ class CreateProject extends Component {
             [event.target.id]: event.target.value
         });
     }
-
+  
 
     render() {
         return (
@@ -61,4 +61,4 @@ class CreateProject extends Component {
     }
 }
 
-export default connect(null, { createProject })(CreateProject);
+export default connect(null, { createProject})(CreateProject);

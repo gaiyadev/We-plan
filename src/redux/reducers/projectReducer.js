@@ -1,11 +1,7 @@
-import { ADD_PROJECT, ADD_PROJECT_ERROR } from '../actions/types';
+import { ADD_PROJECT, ADD_PROJECT_ERROR, GET_PROJECT, GET_PROJECT_ERROR } from '../actions/types';
 
 const initialState = {
-    projects: [
-        { id: '1', title: 'webdev', content: 'content1' },
-        { id: '2', title: 'mobile app', content: 'content 2' },
-        { id: '3', title: 'Dg', content: 'content 3' }
-    ]
+    projects: [   ]
 };
 
 
@@ -17,10 +13,20 @@ export default (state = initialState, action) => {
                 projects: [action.payload, ...state.projects]
 
             };
+        case GET_PROJECT:
+            console.log(action.payload)
+            return {
+                ...state,
+                projects: [action.payload, ...state.projects]
+            };
         case ADD_PROJECT_ERROR:
-            return console.log(action.err)
+            return console.log(action.err);
+        // case GET_PROJECT_ERROR:
+        //    return console.log(action.err);
         default:
             return state;
 
     }
 }
+
+

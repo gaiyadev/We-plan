@@ -3,12 +3,15 @@ import Notification from './Notification';
 import ProjectList from '../Project/ProjectList';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-
+import { getProjects } from '../../redux/actions/projectsAction';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {}
+    }
+    componentDidMount() {
+        this.props.getProjects()
     }
     render() {
         const { projects } = this.props;
@@ -36,4 +39,4 @@ const mapStateToProps = state => ({
     projects: state.project.projects
 });
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, { getProjects})(Dashboard);
