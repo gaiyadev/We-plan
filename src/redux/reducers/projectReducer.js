@@ -1,4 +1,4 @@
-import { ADD_PROJECT } from '../actions/types';
+import { ADD_PROJECT, ADD_PROJECT_ERROR } from '../actions/types';
 
 const initialState = {
     projects: [
@@ -17,6 +17,8 @@ export default (state = initialState, action) => {
                 projects: [action.payload, ...state.projects]
 
             };
+        case ADD_PROJECT_ERROR:
+            return console.log(action.err)
         default:
             return state;
 
