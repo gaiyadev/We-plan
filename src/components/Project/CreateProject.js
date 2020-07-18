@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import { createProject } from '../../redux/actions/projectsAction';
+import { connect } from 'react-redux';
 
 class CreateProject extends Component {
     constructor(props) {
@@ -12,7 +14,13 @@ class CreateProject extends Component {
 
     onSubmitHandler = event => {
         event.preventDefault();
-        console.log(this.state)
+        const { title, content } = this.state;
+        const createProject = {
+            title: title,
+            content: content
+        };
+        //createProject using redux
+        this.props.createProject(createProject);
     }
 
     onChangeHandler = event => {
@@ -20,6 +28,7 @@ class CreateProject extends Component {
             [event.target.id]: event.target.value
         });
     }
+
 
     render() {
         return (
@@ -52,4 +61,4 @@ class CreateProject extends Component {
     }
 }
 
-export default CreateProject;
+export default connect(null, { createProject })(CreateProject);
