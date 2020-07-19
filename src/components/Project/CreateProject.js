@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { createProject } from '../../redux/actions/projectsAction';
 import { connect } from 'react-redux';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
 
 class CreateProject extends Component {
     constructor(props) {
@@ -21,8 +24,16 @@ class CreateProject extends Component {
         };
         //createProject using redux
         this.props.createProject(createProject);
-    }
+        NotificationManager.success('Project added successfully');
+        this.clear()
 
+    }
+    clear = () => {
+        this.setState({
+            title: '',
+            content: ''
+        })
+    }
     onChangeHandler = event => {
         this.setState({
             [event.target.id]: event.target.value
@@ -53,6 +64,7 @@ class CreateProject extends Component {
 
                         <div className="input-field">
                             <button className="btn pink lighten-1 z-depth-0" type="submit">Create</button>
+                            <NotificationContainer />
                         </div>
                     </form>
                 </div>
