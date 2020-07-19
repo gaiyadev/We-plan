@@ -25,15 +25,9 @@ class CreateProject extends Component {
         //createProject using redux
         this.props.createProject(createProject);
         NotificationManager.success('Project added successfully');
-        this.clear()
+    }
 
-    }
-    clear = () => {
-        this.setState({
-            title: '',
-            content: ''
-        })
-    }
+
     onChangeHandler = event => {
         this.setState({
             [event.target.id]: event.target.value
