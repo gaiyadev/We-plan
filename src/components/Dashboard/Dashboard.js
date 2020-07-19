@@ -3,8 +3,8 @@ import Notification from './Notification';
 import ProjectList from '../Project/ProjectList';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 class Dashboard extends Component {
     render() {
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 
 export default compose(
     connect(mapStateToProps, null),
-    firestoreConnect([
-        { collection: 'projects' }
-    ])
+    // firestoreConnect([
+    //     { collection: 'projects' }
+    // ])
 )(Dashboard);

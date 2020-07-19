@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
                 ...state
             };
         case actionTypes.ADD_PROJECT_ERROR:
-            return console.log('Create projct error', action.err)
+            console.log('Create project error', action.err);
+            return state;
         default:
             return state;
     }

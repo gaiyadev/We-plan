@@ -8,7 +8,7 @@ export const createProject = (project) => {
             ...project,
             authorFirstName: "obed",
             authorLastName: 'jude',
-            authorID: 123456,
+            authorId: 123456,
             createdAt: new Date()
         }).then(project => {
             dispatch({
