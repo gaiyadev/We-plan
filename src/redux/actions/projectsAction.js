@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/types';
 
-
 export const createProject = (project) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make asyn call
@@ -9,7 +8,7 @@ export const createProject = (project) => {
             ...project,
             authorFirstName: "obed",
             authorLastName: 'jude',
-            authorId: 123456,
+            authorID: 123456,
             createdAt: new Date()
         }).then(project => {
             dispatch({
@@ -29,7 +28,3 @@ export const createProject = (project) => {
 
 
 
-
-export const getProjects = () => (dispatch, getState) => {
-
-}
