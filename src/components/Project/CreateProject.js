@@ -4,6 +4,8 @@ import { createProject } from '../../redux/actions/projectsAction';
 import { connect } from 'react-redux';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import { Redirect } from 'react-router-dom';
+
 
 
 class CreateProject extends Component {
@@ -36,6 +38,8 @@ class CreateProject extends Component {
 
 
     render() {
+        const { auth } = this.props;
+        if (!auth.uid) return <Redirect to='/signin' />
         return (
             <div>
                 <Helmet>
@@ -67,8 +71,14 @@ class CreateProject extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.firebase.auth
+    };
+}
+
 const mapDispatchToProps = dispatch => ({
     createProject: (project) => dispatch(createProject(project))
 });
 
-export default connect(null, mapDispatchToProps)(CreateProject);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProject);
