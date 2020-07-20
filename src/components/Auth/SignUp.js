@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../redux/actions/authActions';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+
 
 
 class SignUp extends Component {
@@ -20,6 +22,8 @@ class SignUp extends Component {
         event.preventDefault();
         console.log(this.state)
         this.props.signUp(this.state);
+        NotificationManager.success('Account creatted successfully');
+
     }
 
     onChangeHandler = event => {
@@ -68,6 +72,7 @@ class SignUp extends Component {
 
                         <div className="input-field">
                             <button className="btn pink lighten-1 z-depth-0" type="submit">Sign Up</button>
+                            <NotificationContainer />
                         </div>
                     </form>
                 </div>

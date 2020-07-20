@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import { signIn } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+
 
 
 
@@ -17,6 +19,8 @@ class SIgnIn extends Component {
     onSubmitHandler = event => {
         event.preventDefault();
         this.props.signIn(this.state);
+        NotificationManager.success('Login successfully');
+
     }
 
     onChangeHandler = event => {
@@ -53,6 +57,7 @@ class SIgnIn extends Component {
 
                         <div className="input-field">
                             <button className="btn pink lighten-1 z-depth-0" type="submit">Sign in</button>
+                            <NotificationContainer />
                         </div>
                     </form>
                 </div>
