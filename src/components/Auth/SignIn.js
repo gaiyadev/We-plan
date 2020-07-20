@@ -24,7 +24,6 @@ class SIgnIn extends Component {
         if (!this.validator.allValid()) {
             this.validator.showMessages();
             this.props.history.push('/signin');
-
         }
         this.props.signIn(this.state);
         NotificationManager.success('Login successfully');

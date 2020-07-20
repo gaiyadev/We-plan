@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../redux/actions/authActions';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import SimpleReactValidator from 'simple-react-validator';
+
 
 
 
@@ -16,11 +18,16 @@ class SignUp extends Component {
             email: '',
             password: ''
         }
+        this.validator = new SimpleReactValidator();
     }
 
     onSubmitHandler = event => {
         event.preventDefault();
-        console.log(this.state)
+        if (this.state.firstName === '' | this.state.lastName === '' | this.state.email === '' | this.state.password === '') return false;
+        if (!this.validator.allValid()) {
+            this.validator.showMessages();
+            this.props.history.push('/signup');
+        }
         this.props.signUp(this.state);
         NotificationManager.success('Account creatted successfully');
 
@@ -49,19 +56,22 @@ class SignUp extends Component {
                         <div className="input-field">
                             <i className="material-icons prefix">account_circle</i>
                             <label htmlFor="firstName">First Name </label>
-                            <input type="text" id="firstName" name="firstName" onChange={this.onChangeHandler} />
+                            <input type="text" onBlur={() => this.validator.showMessageFor('firstName')} value={this.state.firstName} id="firstName" name="firstName" onChange={this.onChangeHandler} />
+                            {this.validator.message('firstName', this.state.firstName, 'required|alpha|min:4|max:120', { className: 'red-text' })}
                         </div>
 
                         <div className="input-field">
                             <i className="material-icons prefix">account_circle</i>
                             <label htmlFor="lastName">Last Name </label>
-                            <input type="text" id="lastName" name="lastName" onChange={this.onChangeHandler} />
+                            <input type="text" onBlur={() => this.validator.showMessageFor('lastName')} value={this.state.lastName} id="lastName" name="lastName" onChange={this.onChangeHandler} />
+                            {this.validator.message('lastName', this.state.lastName, 'required|alpha|min:4|max:120', { className: 'red-text' })}
                         </div>
 
                         <div className="input-field">
                             <i className="material-icons prefix">email</i>
                             <label htmlFor="email">Email </label>
-                            <input type="email" id="email" name="email" onChange={this.onChangeHandler} />
+                            <input type="email" id="email" value={this.state.email} name="email" onChange={this.onChangeHandler} />
+                            {this.validator.message('email', this.state.email, 'required|email', { className: 'red-text' })}
                         </div>
 
                         <div className="input-field">
