@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import { signIn } from '../../redux/actions/authActions';
+import { connect } from 'react-redux';
 
 
 class SIgnIn extends Component {
@@ -12,9 +14,7 @@ class SIgnIn extends Component {
     }
     onSubmitHandler = event => {
         event.preventDefault();
-        console.log(this.state)
-
-
+        this.props.signIn(this.state);
     }
 
     onChangeHandler = event => {
@@ -24,6 +24,7 @@ class SIgnIn extends Component {
     }
 
     render() {
+        const { authError } = this.props;
         return (
             <div>
                 <Helmet>
@@ -31,6 +32,9 @@ class SIgnIn extends Component {
                 </Helmet>
                 <div className="container">
                     <form onSubmit={this.onSubmitHandler}>
+                        <div className="red-text center">
+                            {authError ? <p>{authError}</p> : null}
+                        </div>
                         <h5 className="grey-text text-darken-3"> Sign In</h5>
                         <div className="input-field">
                             <i className="material-icons prefix">email</i>
@@ -54,4 +58,15 @@ class SIgnIn extends Component {
     }
 }
 
-export default SIgnIn;
+const mapDispatchToProps = dispatch => {
+    return {
+        SIgnIn: (creds) => dispatch(signIn(creds))
+    };
+};
+
+const mapStateToProps = state => {
+    return {
+        authError: state.auth.authError
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SIgnIn);
