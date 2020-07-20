@@ -19,3 +19,20 @@ export const signIn = credentials => {
         });
     };
 }
+
+
+export const signOut = () => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase();
+        firebase.auth().signOut().then(() => {
+            dispatch({
+                type: actionTypes.SIGN_OUT_SUCCESS
+            })
+        }).catch(err => {
+            dispatch({
+                type: actionTypes.SIGN_OUT_ERROR,
+                err: err
+            })
+        })
+    }
+}
