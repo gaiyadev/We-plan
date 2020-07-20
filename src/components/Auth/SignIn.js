@@ -60,7 +60,7 @@ class SIgnIn extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        SIgnIn: (creds) => dispatch(signIn(creds))
+        signIn: (creds) => dispatch(signIn(creds))
     };
 };
 
