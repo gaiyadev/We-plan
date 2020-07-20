@@ -6,8 +6,6 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 import { Redirect } from 'react-router-dom';
 
-
-
 class CreateProject extends Component {
     constructor(props) {
         super(props);
@@ -27,6 +25,7 @@ class CreateProject extends Component {
         //createProject using redux
         this.props.createProject(createProject);
         NotificationManager.success('Project added successfully');
+        this.props.history.push('/');
     }
 
 

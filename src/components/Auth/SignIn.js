@@ -6,8 +6,6 @@ import { Redirect } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 
-
-
 class SIgnIn extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +18,7 @@ class SIgnIn extends Component {
         event.preventDefault();
         this.props.signIn(this.state);
         NotificationManager.success('Login successfully');
-
+        this.props.history.push('/');
     }
 
     onChangeHandler = event => {

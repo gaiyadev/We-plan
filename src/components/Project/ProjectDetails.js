@@ -20,7 +20,7 @@ const ProjectSummary = props => {
                             {project.content}
                         </p>
                     </div>
-                    <div className="card-action grey lighten-4 grey-text">{project.authorFirstName} {project.authorLasttName}
+                    <div className="card-action grey lighten-4 grey-text">{project.authorFirstName} {project.authorLastName}
                         <div >@nd Setempber 33</div>
                     </div>
                 </div>
