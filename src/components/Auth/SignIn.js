@@ -4,6 +4,8 @@ import { signIn } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import SimpleReactValidator from 'simple-react-validator';
+
 
 
 class SIgnIn extends Component {
@@ -13,9 +15,17 @@ class SIgnIn extends Component {
             email: '',
             password: ''
         }
+        this.validator = new SimpleReactValidator();
     }
     onSubmitHandler = event => {
         event.preventDefault();
+        if (this.state.email === '' | this.state.password === '') return false;
+
+        if (!this.validator.allValid()) {
+            this.validator.showMessages();
+            this.props.history.push('/signin');
+
+        }
         this.props.signIn(this.state);
         NotificationManager.success('Login successfully');
         this.props.history.push('/');
@@ -44,7 +54,8 @@ class SIgnIn extends Component {
                         <div className="input-field">
                             <i className="material-icons prefix">email</i>
                             <label htmlFor="email">Email </label>
-                            <input type="email" id="email" name="email" onChange={this.onChangeHandler} />
+                            <input type="email" value={this.state.email} id="email" name="email" onChange={this.onChangeHandler} />
+                            {this.validator.message('email', this.state.email, 'required|email', { className: 'red-text' })}
                         </div>
 
                         <div className="input-field">

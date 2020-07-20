@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { Redirect } from 'react-router-dom';
+import SimpleReactValidator from 'simple-react-validator';
+
 
 class CreateProject extends Component {
     constructor(props) {
@@ -13,11 +15,19 @@ class CreateProject extends Component {
             title: '',
             content: ''
         }
+        this.validator = new SimpleReactValidator();
+
     }
 
     onSubmitHandler = event => {
         event.preventDefault();
         const { title, content } = this.state;
+        if (title === '' | content === '') return false;
+        if (!this.validator.allValid()) {
+            this.validator.showMessages();
+            this.props.history.push('/create');
+
+        }
         const createProject = {
             title: title,
             content: content
@@ -50,13 +60,16 @@ class CreateProject extends Component {
                         <div className="input-field">
                             <i className="material-icons prefix">topic</i>
                             <label htmlFor="title">Title </label>
-                            <input type="text" id="title" name="title" onChange={this.onChangeHandler} />
+                            <input type="text" id="title" onBlur={() => this.validator.showMessageFor('title')} value={this.state.title} name="title" onChange={this.onChangeHandler} />
+                            {this.validator.message('title', this.state.title, 'required|alpha|min:4|max:120', { className: 'red-text' })}
+
                         </div>
 
                         <div className="input-field">
                             <i className="material-icons prefix">textsms</i>
                             <label htmlFor="content">Project Content </label>
-                            <textarea id="content" onChange={this.onChangeHandler} name="content" className="materialize-textarea"></textarea>
+                            <textarea id="content" onBlur={() => this.validator.showMessageFor('content')} value={this.state.content} onChange={this.onChangeHandler} name="content" className="materialize-textarea"></textarea>
+                            {this.validator.message('content', this.state.content, 'required|alpha|min:4|max:1020', { className: 'red-text' })}
                         </div>
 
                         <div className="input-field">
