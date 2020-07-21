@@ -10,8 +10,6 @@ const Navbar = props => {
     const links = auth.uid ? <SignInLinks profile={profile} />
         : <SignOutLinks />
 
-
-
     return (
         <div className="navbar-fixed">
             <nav>
