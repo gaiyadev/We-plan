@@ -10,15 +10,18 @@ const Navbar = props => {
     const links = auth.uid ? <SignInLinks profile={profile} />
         : <SignOutLinks />
 
+
+
     return (
         <div className="navbar-fixed">
             <nav>
                 <div className="nav-wrapper grey darken-3">
                     <div className="container">
                         <Link className=" brand-logo" to="/">WePlan</Link>
-                              {/* <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a> */}
-
+                        <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                        {/* <div className="sidenav" id="mobile-demo"> */}
                         {links}
+                        {/* </div> */}
                     </div>
                 </div>
             </nav >
@@ -32,4 +35,6 @@ const mapStateToProps = state => {
         profile: state.firebase.profile
     };
 };
+
 export default connect(mapStateToProps, null)(Navbar);
+

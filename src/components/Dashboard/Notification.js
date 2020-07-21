@@ -14,7 +14,7 @@ const Notification = props => {
                                     <span className="pink-text">{notification.user}</span> &nbsp;
                                     <span>{notification.content} </span>
                                     <div className="grey-text note-date">
-                                        {moment(notification.time.toDate()).fromNow}
+                                        {moment(notification.time.toDate()).fromNow()}
                                     </div>
                                 </li>);
                             })

@@ -11,7 +11,6 @@ class Dashboard extends Component {
     render() {
         const { projects, auth, notifications } = this.props;
         if (!auth.uid) return <Redirect to='/signin' />
-
         return (
             <div>
                 <Helmet>
@@ -45,7 +44,7 @@ export default compose(
     // firestoreConnect(() => ['projects']),
     connect(mapStateToProps, null),
     firestoreConnect([
-        { collection: 'projects' },
-        { collection: 'notifications', limit: 3 }
+        { collection: 'projects', orderBy: ['createdAt', 'desc'] },
+        { collection: 'notifications', limit: 4, orderBy: ['time', 'desc'] }
     ])
 )(Dashboard);
