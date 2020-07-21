@@ -61,7 +61,7 @@ class CreateProject extends Component {
                             <i className="material-icons prefix">topic</i>
                             <label htmlFor="title">Title </label>
                             <input type="text" id="title" onBlur={() => this.validator.showMessageFor('title')} value={this.state.title} name="title" onChange={this.onChangeHandler} />
-                            {this.validator.message('title', this.state.title, 'required|alpha|min:4|max:120', { className: 'red-text' })}
+                            {this.validator.message('title', this.state.title, 'required|min:4|max:120', { className: 'red-text' })}
 
                         </div>
 
@@ -69,7 +69,7 @@ class CreateProject extends Component {
                             <i className="material-icons prefix">textsms</i>
                             <label htmlFor="content">Project Content </label>
                             <textarea id="content" onBlur={() => this.validator.showMessageFor('content')} value={this.state.content} onChange={this.onChangeHandler} name="content" className="materialize-textarea"></textarea>
-                            {this.validator.message('content', this.state.content, 'required|alpha|min:4|max:1020', { className: 'red-text' })}
+                            {this.validator.message('content', this.state.content, 'required|min:4|max:1020', { className: 'red-text' })}
                         </div>
 
                         <div className="input-field">

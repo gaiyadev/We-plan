@@ -11,7 +11,7 @@ const Navbar = props => {
         : <SignOutLinks />
 
     return (
-        <div class="navbar-fixed">
+        <div className="navbar-fixed">
             <nav>
                 <div className="nav-wrapper grey darken-3">
                     <div className="container">
