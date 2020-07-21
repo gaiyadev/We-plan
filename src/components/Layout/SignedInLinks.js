@@ -5,7 +5,7 @@ import { signOut } from '../../redux/actions/authActions';
 
 const SignInLinks = props => {
     return (
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <ul id="nav-mobile" className="right hide-on-med">
             <li> <NavLink to="/create" >New Project</NavLink></li>
             <li><Link to="#" onClick={props.signOut}> SignOut</Link> </li>
             <li> <NavLink to="/" className="btn btn-floating pink ligthen-1" >

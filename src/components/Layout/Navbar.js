@@ -15,11 +15,8 @@ const Navbar = props => {
             <nav>
                 <div className="nav-wrapper grey darken-3">
                     <div className="container">
-                        <Link className=" brand-logo" to="/">WePlan</Link>
-                        <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                        {/* <div className="sidenav" id="mobile-demo"> */}
+                        <Link className=" brand-logo hide-on-med-and-down" to="/">WePlan</Link>
                         {links}
-                        {/* </div> */}
                     </div>
                 </div>
             </nav >
